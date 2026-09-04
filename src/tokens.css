@@ -1,0 +1,57 @@
+/*
+ * @db/design-tokens - single source of truth for D&B brand colors and
+ * typography, meant to be imported by every microservice (in-monorepo via
+ * `@db/ui/styles.css`, or standalone by external apps like partner/agency
+ * repos that don't share the rest of `packages/`). Values come from the
+ * D&B brandmanuál (03.4 Barevnost primary/sekundární, 03.7 Online
+ * typografie) - change brand colors/fonts here, not per-app.
+ *
+ * Heading font: brandmanuál specifies "Solomon Sans Bold", a licensed font
+ * not available on Google Fonts. Using Plus Jakarta Sans as a free
+ * geometric-sans stand-in until the licensed font files are supplied -
+ * swap the @import below plus --db-font-heading, nothing downstream needs
+ * to change.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
+
+:root {
+  /* Primary (brandmanuál 03.4.1) */
+  --db-color-bg: #faf9f6;
+  --db-color-fg: #121212;
+  --db-color-border: #d9d7d2;
+  --db-color-muted: #6b6963;
+
+  /* Functional - reserved strictly for error/success states, never a
+     general accent. Not part of the brand palette, carried over unchanged. */
+  --db-color-error: #d1272c;
+  --db-color-success: #2e8b4f;
+
+  /* Secondary / accent (brandmanuál 03.4.3). Pink is the brand's default
+     online secondary color; the other four are for occasional emphasis
+     (campaigns, callouts), not everyday UI accents. */
+  --db-color-accent: #ce0067;
+  --db-color-secondary-pink: #ce0067;
+  --db-color-secondary-blue: #3185fc;
+  --db-color-secondary-teal: #1a535c;
+  --db-color-secondary-yellow: #e2cc01;
+  --db-color-secondary-orange: #ff5400;
+
+  /* Typography (brandmanuál 03.7) */
+  --db-font-heading: 'Plus Jakarta Sans', system-ui, 'Segoe UI', Roboto, sans-serif; /* stand-in for Solomon Sans Bold */
+  --db-font-heading-weight: 800;
+  --db-font-body: 'Poppins', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --db-font-body-weight: 300; /* "Poppins Light" per brandmanuál */
+  --db-font-body-weight-control: 400; /* buttons/inputs stay regular - 300 reads too thin at UI sizes */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --db-color-bg: #121212;
+    --db-color-fg: #faf9f6;
+    --db-color-border: #3a3935;
+    --db-color-muted: #a8a6a0;
+    --db-color-error: #ff6b6b;
+    --db-color-success: #4ade80;
+  }
+}
