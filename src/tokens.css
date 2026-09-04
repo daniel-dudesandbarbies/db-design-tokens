@@ -37,6 +37,13 @@
   --db-color-secondary-yellow: #e2cc01;
   --db-color-secondary-orange: #ff5400;
 
+  /* Content placed ON TOP of --db-color-accent (e.g. the global header) -
+     always white regardless of light/dark mode, unlike --db-color-fg which
+     inverts. Accent itself doesn't change between modes, so its foreground
+     shouldn't either - using --db-color-fg there would silently go black
+     on a dark-mode device, unreadable against the still-pink background. */
+  --db-color-on-accent: #ffffff;
+
   /* Typography (brandmanuál 03.7) */
   --db-font-heading: 'Plus Jakarta Sans', system-ui, 'Segoe UI', Roboto, sans-serif; /* stand-in for Solomon Sans Bold */
   --db-font-heading-weight: 800;
