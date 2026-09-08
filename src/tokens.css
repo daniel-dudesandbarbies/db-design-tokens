@@ -50,6 +50,19 @@
   --db-font-body: 'Poppins', system-ui, 'Segoe UI', Roboto, sans-serif;
   --db-font-body-weight: 300; /* "Poppins Light" per brandmanuál */
   --db-font-body-weight-control: 400; /* buttons/inputs stay regular - 300 reads too thin at UI sizes */
+
+  /* Square corners are the brand signature - buttons, boxes, cards, inputs
+     stay sharp everywhere. `packages/ui/styles.css` already referenced this
+     token in four places before it existed here; most apps already hardcode
+     `border-radius: 0` directly. This is the single place to change it if
+     that ever stops being true.
+     Exception apps make deliberately: circular elements (avatars, round
+     badges) use `border-radius: 50%` directly, not this token - they're a
+     different shape concept, not a "cornered box". Also exempt: any control
+     built to a third-party's own branding guidelines (e.g. the Google
+     sign-in button), which must keep that provider's exact corner radius to
+     stay recognizable/compliant. */
+  --db-radius: 0px;
 }
 
 @media (prefers-color-scheme: dark) {
