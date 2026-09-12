@@ -65,6 +65,12 @@
   --db-radius: 0px;
 }
 
+/* Dark mode je záměrně vypnutý - klient si ho zatím nepřeje vůbec, appky
+   mají zůstat světlé bez ohledu na OS/prohlížeč preferenci. Hodnoty níž
+   zůstávají, ať se dá dark mode zapnout zpátky jen odkomentováním tohohle
+   bloku, až o něj bude zájem - nic downstream se přitom nemusí měnit,
+   appky pořád čtou stejné --db-color-* proměnné. */
+/*
 @media (prefers-color-scheme: dark) {
   :root {
     --db-color-bg: #121212;
@@ -75,3 +81,4 @@
     --db-color-success: #4ade80;
   }
 }
+*/
