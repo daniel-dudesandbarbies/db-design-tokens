@@ -6,14 +6,14 @@
  * D&B brandmanuál (03.4 Barevnost primary/sekundární, 03.7 Online
  * typografie) - change brand colors/fonts here, not per-app.
  *
- * Heading font: brandmanuál specifies "Solomon Sans Bold", a licensed font
- * not available on Google Fonts. Using Plus Jakarta Sans as a free
- * geometric-sans stand-in until the licensed font files are supplied -
- * swap the @import below plus --db-font-heading, nothing downstream needs
- * to change.
+ * Redesign 2026-10 (návrh nové homepage): modrá #1F3BFF jako hlavní barva,
+ * růžová #FF0080 jako akcent, všechno zaoblené (žádné hranaté boxy ani
+ * tlačítka), nadpisy Poppins ExtraBold verzálkami. Brandmanuálový
+ * "Solomon Sans Bold" zůstává licenčně nedostupný - nadpisy proto Poppins
+ * 800 jako na nové homepage; swap = @import níž + --db-font-heading.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;800&display=swap');
 
 :root {
   /* Primary (brandmanuál 03.4.1) */
@@ -27,11 +27,18 @@
   --db-color-error: #d1272c;
   --db-color-success: #2e8b4f;
 
-  /* Secondary / accent (brandmanuál 03.4.3). Pink is the brand's default
-     online secondary color; the other four are for occasional emphasis
-     (campaigns, callouts), not everyday UI accents. */
-  --db-color-accent: #ce0067;
-  --db-color-secondary-pink: #ce0067;
+  /* Hlavní barva nového vzhledu - pozadí homepage, hlavičky, tlačítek,
+     plovoucí bubliny. Akcent = totéž (všechno, co dřív bylo růžové). */
+  --db-color-brand: #1f3bff;
+  --db-color-brand-rgb: 31, 59, 255;
+  --db-color-accent: #1f3bff;
+  /* Růžová z nového návrhu (#FF0080) - zvýraznění: povinné aktuality,
+     hover kruhu BIBLE, otevřená složka. */
+  --db-color-highlight: #ff0080;
+
+  /* Secondary (brandmanuál 03.4.3) - pro občasné zvýraznění (kampaně,
+     callouty), ne běžné UI. */
+  --db-color-secondary-pink: #ff0080;
   --db-color-secondary-blue: #3185fc;
   --db-color-secondary-teal: #1a535c;
   --db-color-secondary-yellow: #e2cc01;
@@ -45,24 +52,18 @@
   --db-color-on-accent: #ffffff;
 
   /* Typography (brandmanuál 03.7) */
-  --db-font-heading: 'Plus Jakarta Sans', system-ui, 'Segoe UI', Roboto, sans-serif; /* stand-in for Solomon Sans Bold */
+  --db-font-heading: 'Poppins', system-ui, 'Segoe UI', Roboto, sans-serif; /* stand-in for Solomon Sans Bold, jako nová homepage */
   --db-font-heading-weight: 800;
   --db-font-body: 'Poppins', system-ui, 'Segoe UI', Roboto, sans-serif;
   --db-font-body-weight: 300; /* "Poppins Light" per brandmanuál */
   --db-font-body-weight-control: 400; /* buttons/inputs stay regular - 300 reads too thin at UI sizes */
 
-  /* Square corners are the brand signature - buttons, boxes, cards, inputs
-     stay sharp everywhere. `packages/ui/styles.css` already referenced this
-     token in four places before it existed here; most apps already hardcode
-     `border-radius: 0` directly. This is the single place to change it if
-     that ever stops being true.
-     Exception apps make deliberately: circular elements (avatars, round
-     badges) use `border-radius: 50%` directly, not this token - they're a
-     different shape concept, not a "cornered box". Also exempt: any control
-     built to a third-party's own branding guidelines (e.g. the Google
-     sign-in button), which must keep that provider's exact corner radius to
-     stay recognizable/compliant. */
-  --db-radius: 0px;
+  /* Nic hranatého: boxy, karty, inputy, modaly --db-radius, velké panely
+     --db-radius-lg, tlačítka a štítky pilulka. Kruhové prvky (avatar,
+     bublina) dál border-radius: 50% přímo. */
+  --db-radius: 16px;
+  --db-radius-lg: 24px;
+  --db-radius-pill: 100px;
 }
 
 /* Dark mode je záměrně vypnutý - klient si ho zatím nepřeje vůbec, appky
