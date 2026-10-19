@@ -149,3 +149,13 @@
   }
 }
 */
+
+/* Plynulý přechod (prolnutí) mezi appkami na jednom originu - homepage,
+   /auth, /platform. Bez něj prohlížeč při přechodu stránku na chvíli
+   vybělí. Funguje jen tam, kde obě stránky tohle pravidlo mají; prohlížeče
+   bez podpory ho ignorují. Kdo má vypnuté animace, přechod nevidí. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
