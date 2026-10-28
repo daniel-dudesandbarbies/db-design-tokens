@@ -18,10 +18,29 @@ Importovat před appka-specifickým CSS. Proměnné: `--db-color-bg`,
 `--db-color-secondary-*`), `--db-font-heading`, `--db-font-body` (a jejich
 `-weight` varianty). Dark mode přes `prefers-color-scheme`.
 
-Nadpisový font je dočasně **Plus Jakarta Sans** — stand-in za licencovaný
-Solomon Sans Bold z brandmanuálu, dokud nejsou k dispozici jeho soubory.
-Swap se dělá jen v `src/tokens.css` (`@import` + `--db-font-heading`),
-nic downstream se měnit nemusí.
+Písmo je **Poppins** hostovaný v repu (`fonts/`, řezy 300/400/700/800),
+nadpisy ExtraBold verzálkami. Brandmanuálový Solomon Sans Bold je licenčně
+nedostupný; swap by se dělal jen v `src/tokens.css` (`@font-face`
++ `--db-font-heading`).
+
+## Loga a ikony
+
+`assets/brand/` je jediný zdroj log a brand ikon. Loga se nikdy nekreslí
+ani nevymýšlí, jen se použije (případně ořízne / zmenší) soubor odtud.
+
+| Soubor | Použití |
+|---|---|
+| `D&B_logo_online_-13.png` | bílý wordmark (na modré hlavičce) |
+| `D&B_logo_online_-08.png`, `-12.png` | další varianty wordmarku |
+| `db_internal_rounded.svg` | favikona a PWA ikony všech appek |
+| `favicon.svg`, `favicondbsystem.svg` | starší favikony |
+| `sytemfavi.svg`, `tvicon.svg`, `tvicon2.svg` | TV admin |
+| `backico.svg` | šipka zpět (`BackIcon` v `@db/shell`) |
+| `sharedico.svg` | sdílené složky na homepage |
+| `boticon.png`, `slackboticon.svg` | Slack bot |
+
+Appka si potřebný soubor zkopíruje do svého `public/`, nebo ho importuje
+přes `@db/design-tokens/assets/brand/<soubor>`.
 
 ## Instalace odjinud
 
